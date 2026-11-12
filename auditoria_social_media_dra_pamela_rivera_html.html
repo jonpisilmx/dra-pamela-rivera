@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría Digital & Marca Personal | Dra. Pamela Rivera</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        sand: {
+                            50: '#FAF7F5',
+                            100: '#E9DFD6',
+                            200: '#DDD0C4',
+                        },
+                        peach: {
+                            100: '#FDECE4',
+                            200: '#FAD7C7',
+                        },
+                        coral: {
+                            400: '#FF8559',
+                            500: '#FF6F3C',
+                            600: '#E85A27',
+                        },
+                        charcoal: {
+                            800: '#29221E',
+                            900: '#1C1917',
+                            950: '#141110',
+                        }
+                    },
+                    borderRadius: {
+                        'bento': '28px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E9DFD6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1C1917;
+            scroll-behavior: smooth;
+        }
+        .bento-card {
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px -12px rgba(28, 25, 23, 0.09);
+        }
+        .dark-gradient-bento {
+            background: linear-gradient(145deg, #1C1917 0%, #332018 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E9DFD6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C8B9AC;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF6F3C;
+        }
+        /* Print / Clean PDF Styles */
+        @media print {
+            body {
+                background-color: #FFFFFF !important;
+                padding: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .main-shell {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .bento-card {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #E5E7EB !important;
+            }
+            .dark-gradient-bento {
+                background: #1C1917 !important;
+                color: #FFFFFF !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-4 px-3 sm:py-8 sm:px-6 lg:px-8 antialiased selection:bg-coral-500 selection:text-white">
+
+    <!-- Contenedor Principal Blanco con Bordes Redondeados 28px -->
+    <div class="main-shell max-w-7xl mx-auto bg-white rounded-[28px] shadow-2xl shadow-charcoal-900/10 border border-white/80 overflow-hidden">
+
+        <!-- 1. Header / Barra de Navegación Superior -->
+        <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-sand-100 px-5 sm:px-10 py-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <!-- Logo / Marca con Icono Geométrico Minimalista -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-2xl bg-charcoal-900 flex items-center justify-center shadow-sm group-hover:bg-coral-500 transition-colors duration-300">
+                        <!-- Icono Geométrico Minimalista SVG -->
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="8" height="8" rx="2" fill="#FF6F3C" class="group-hover:fill-white transition-colors"/>
+                            <circle cx="17" cy="7" r="4" stroke="white" stroke-width="2.2"/>
+                            <path d="M4 17H11L19 21" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest font-bold text-charcoal-900/50">Auditoría por</span>
+                        <span class="font-extrabold text-base sm:text-lg tracking-tight text-charcoal-900">Agencia Reinventa</span>
+                    </div>
+                </a>
+
+                <!-- Enlaces de Navegación -->
+                <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-charcoal-800/80">
+                    <a href="#diagnostico" class="hover:text-coral-500 transition-colors">Diagnóstico</a>
+                    <a href="#metricas" class="hover:text-coral-500 transition-colors">Métricas</a>
+                    <a href="#plan-mejora" class="hover:text-coral-500 transition-colors">Plan de Mejora</a>
+                    <a href="#contacto" class="hover:text-coral-500 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Botones de Acción Header -->
+                <div class="flex items-center gap-2.5 no-print">
+                    <button onclick="window.print()" title="Guardar reporte como PDF" class="p-2.5 rounded-xl border border-sand-200 text-charcoal-800 hover:bg-sand-50 transition-colors flex items-center gap-1.5 text-xs font-semibold">
+                        <i data-lucide="printer" class="w-4 h-4 text-charcoal-800"></i>
+                        <span class="hidden sm:inline">Guardar PDF</span>
+                    </button>
+                    <button onclick="openModal()" class="text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl bg-coral-500 hover:bg-coral-600 text-white shadow-lg shadow-coral-500/25 transition-all duration-200 flex items-center gap-2">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        <span>Agendar Asesoría</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-5 sm:p-10 space-y-10">
+
+            <!-- 2. Hero Section (Estilo Bento) -->
+            <section id="metricas" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                
+                <!-- Izquierda: Propuesta y Título Principal -->
+                <div class="lg:col-span-7 bg-sand-50 rounded-[28px] p-7 sm:p-10 border border-sand-100 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -top-16 -right-16 w-56 h-56 bg-coral-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-peach-100 border border-peach-200 text-xs font-bold text-charcoal-900 mb-6">
+                            <span class="w-2 h-2 rounded-full bg-coral-500"></span>
+                            Auditoría Digital & Estrategia de Marca Personal
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-charcoal-900 leading-[1.12] mb-5">
+                            Impulsando la marca de la <span class="text-coral-500">Dra. Pamela Rivera</span> en la Era Digital.
+                        </h1>
+
+                        <p class="font-body text-charcoal-800/80 text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
+                            Análisis integral de sus ecosistemas sociales en <strong>Instagram, Facebook y TikTok</strong>. Evaluamos identidad visual, embudos de conversión, retención de comunidad y narrativa para transformar su alcance en citas constantes en Oaxaca.
+                        </p>
+
+                        <!-- Botones Hero -->
+                        <div class="flex flex-wrap items-center gap-3.5 no-print">
+                            <a href="#diagnostico" class="px-6 py-3.5 rounded-2xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-sm transition-all shadow-md flex items-center gap-2">
+                                <span>Ver Diagnóstico Completo</span>
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-coral-400"></i>
+                            </a>
+                            <a href="https://wa.me/525631924145?text=Hola%20Agencia%20Reinventa,%20soy%20de%20la%20cl%C3%ADnica%20de%20la%20Dra.%20Pamela%20Rivera%20y%20revis%C3%A9%20nuestra%20auditor%C3%ADa%20digital." target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-2xl bg-peach-100 hover:bg-peach-200 text-charcoal-900 font-bold text-sm border border-peach-200 transition-all flex items-center gap-2">
+                                <i data-lucide="message-circle" class="w-4 h-4 text-coral-600"></i>
+                                <span>Contactar por WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Metadatos del Cliente -->
+                    <div class="pt-7 mt-8 border-t border-sand-200/80 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider font-bold text-charcoal-800/50">Especialidad</p>
+                            <p class="text-sm font-bold text-charcoal-900">Medicina Estética</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider font-bold text-charcoal-800/50">Plaza Principal</p>
+                            <p class="text-sm font-bold text-charcoal-900">Oaxaca, México</p>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <p class="text-[11px] uppercase tracking-wider font-bold text-charcoal-800/50">Ecosistemas Auditados</p>
+                            <p class="text-sm font-bold text-coral-600">IG • FB • TikTok</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Derecha: Bento Cards de Métricas Clave (3 Plataformas) -->
+                <div class="lg:col-span-5 flex flex-col gap-4 justify-between">
+                    
+                    <!-- Tarjeta Instagram (Dark Charcoal Accent) -->
+                    <a href="https://www.instagram.com/dra.pamelariverap" target="_blank" rel="noopener noreferrer" class="dark-gradient-bento text-white rounded-[28px] p-6 bento-card block relative overflow-hidden group">
+                        <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-coral-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-coral-400">
+                                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-base leading-none">Instagram</h2>
+                                    <span class="text-xs text-white/60 font-mono">@dra.pamelariverap</span>
+                                </div>
+                            </div>
+                            <span class="p-2 rounded-full bg-white/10 group-hover:bg-coral-500 transition-colors">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 text-white"></i>
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 pt-3 border-t border-white/10 text-center">
+                            <div>
+                                <p class="text-xl sm:text-2xl font-extrabold text-white">309</p>
+                                <p class="text-[10px] uppercase tracking-wider text-white/60 font-semibold">Publicaciones</p>
+                            </div>
+                            <div>
+                                <p class="text-xl sm:text-2xl font-extrabold text-coral-400">960</p>
+                                <p class="text-[10px] uppercase tracking-wider text-white/60 font-semibold">Seguidores</p>
+                            </div>
+                            <div>
+                                <p class="text-xl sm:text-2xl font-extrabold text-white">177</p>
+                                <p class="text-[10px] uppercase tracking-wider text-white/60 font-semibold">Seguidos</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Tarjeta Facebook (Peach Light Card) -->
+                    <a href="https://www.facebook.com/PamelaMedicinaEstetica" target="_blank" rel="noopener noreferrer" class="bg-peach-100 rounded-[28px] p-6 border border-peach-200 bento-card block group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-white flex items-center justify-center text-charcoal-900 shadow-xs">
+                                    <i data-lucide="facebook" class="w-5 h-5 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-base text-charcoal-900 leading-none">Facebook</h2>
+                                    <span class="text-xs text-charcoal-800/70 font-medium">Pamela Medicina Estética</span>
+                                </div>
+                            </div>
+                            <span class="p-2 rounded-full bg-white text-charcoal-900 group-hover:bg-coral-500 group-hover:text-white transition-colors">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 pt-3 border-t border-peach-200/80 text-center">
+                            <div class="bg-white/70 rounded-2xl py-2.5 px-3">
+                                <p class="text-xl sm:text-2xl font-extrabold text-charcoal-900">1.3 mil</p>
+                                <p class="text-[10px] uppercase tracking-wider text-charcoal-800/60 font-bold">Seguidores</p>
+                            </div>
+                            <div class="bg-white/70 rounded-2xl py-2.5 px-3">
+                                <p class="text-xl sm:text-2xl font-extrabold text-charcoal-900">11</p>
+                                <p class="text-[10px] uppercase tracking-wider text-charcoal-800/60 font-bold">Seguidos</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Tarjeta TikTok (Sand Card) -->
+                    <a href="https://www.tiktok.com/@drapamelarivera" target="_blank" rel="noopener noreferrer" class="bg-sand-50 rounded-[28px] p-6 border border-sand-200 bento-card block group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-charcoal-900 flex items-center justify-center text-white">
+                                    <!-- TikTok Custom SVG Icon -->
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h2 class="font-bold text-base text-charcoal-900 leading-none">TikTok</h2>
+                                    <span class="text-xs text-charcoal-800/70 font-mono">@drapamelarivera</span>
+                                </div>
+                            </div>
+                            <span class="p-2 rounded-full bg-white border border-sand-200 text-charcoal-900 group-hover:bg-coral-500 group-hover:text-white group-hover:border-coral-500 transition-colors">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 pt-3 border-t border-sand-200 text-center">
+                            <div>
+                                <p class="text-lg sm:text-xl font-extrabold text-charcoal-900">187</p>
+                                <p class="text-[10px] uppercase tracking-wider text-charcoal-800/60 font-bold">Seguidores</p>
+                            </div>
+                            <div>
+                                <p class="text-lg sm:text-xl font-extrabold text-charcoal-900">120</p>
+                                <p class="text-[10px] uppercase tracking-wider text-charcoal-800/60 font-bold">Siguiendo</p>
+                            </div>
+                            <div>
+                                <p class="text-lg sm:text-xl font-extrabold text-coral-600">676</p>
+                                <p class="text-[10px] uppercase tracking-wider text-charcoal-800/60 font-bold">Me gusta</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- 3. Sección de Diagnóstico Detallado (6 Pilares Evaluados con Filtros Interactivos) -->
+            <section id="diagnostico" class="space-y-6 pt-2">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-coral-500">Auditoría Cualitativa</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 mt-1">Diagnóstico de los 6 Pilares Estratégicos</h2>
+                        <p class="font-body text-sm text-charcoal-800/70 mt-1">Evaluación profunda del ecosistema digital de la Dra. Pamela Rivera.</p>
+                    </div>
+
+                    <!-- Filtros Interactivos -->
+                    <div class="inline-flex flex-wrap items-center gap-1.5 p-1.5 bg-sand-50 rounded-2xl border border-sand-200 text-xs font-bold no-print">
+                        <button onclick="filterPillars('all')" id="filter-all" class="pillar-filter-btn px-4 py-2 rounded-xl bg-charcoal-900 text-white shadow-xs transition-all">
+                            Todos (6)
+                        </button>
+                        <button onclick="filterPillars('oportunidad')" id="filter-oportunidad" class="pillar-filter-btn px-4 py-2 rounded-xl text-charcoal-800 hover:bg-white transition-all">
+                            Áreas de Oportunidad (4)
+                        </button>
+                        <button onclick="filterPillars('fortaleza')" id="filter-fortaleza" class="pillar-filter-btn px-4 py-2 rounded-xl text-charcoal-800 hover:bg-white transition-all">
+                            Fortalezas (2)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid de 6 Pilares -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="pillars-container">
+
+                    <!-- Pilar 1: Claridad del Bio-Funnel -->
+                    <article class="pillar-card cat-oportunidad bg-sand-50 rounded-[28px] p-6 sm:p-7 border border-sand-200 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center border border-amber-200">
+                                    <i data-lucide="compass" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-amber-100 text-amber-900 border border-amber-200">
+                                    Oportunidad de Mejora
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                1. Claridad del Bio-Funnel (Optimización del Perfil)
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Nombre optimizado con palabras clave (SEO), propuesta de valor clara en la biografía, llamado a la acción (CTA) directo y enlace único o hub funcional.
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-sand-200/80">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-800 mb-1.5">Evaluación:</p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed">
+                                    Mientras que mediante Facebook es fácil saber que la Dra. atiende en <strong>Oaxaca</strong>, en las otras plataformas no se sabe dónde está el consultorio y cuáles son sus tratamientos estrella.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-sand-200 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Enfoque: SEO Local & Hub</span>
+                            <span class="font-bold text-amber-800">IG & TikTok</span>
+                        </div>
+                    </article>
+
+                    <!-- Pilar 2: Coherencia y Calidad Visual -->
+                    <article class="pillar-card cat-oportunidad bg-peach-100/70 rounded-[28px] p-6 sm:p-7 border border-peach-200 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center border border-rose-200">
+                                    <i data-lucide="palette" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-rose-100 text-rose-800 border border-rose-200">
+                                    Crítico / Prioritario
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                2. Coherencia y Calidad Visual (Brand Identity)
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Identidad gráfica definida (paleta de colores, tipografía, estilo fotográfico) que genere reconocimiento inmediato en el feed y en las portadas de Reels.
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-peach-200 space-y-2.5">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-rose-700">Evaluación:</p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed">
+                                    No hay un estilo gráfico, la Dra. es el identificador y su presencia en cada post es lo que la identifica. No hay un tipo de letra, colores u otro objeto gráfico que distinga a la marca de otras marcas.
+                                </p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed pt-2 border-t border-sand-100">
+                                    <strong>Subtítulos:</strong> La letra rosa de los subtítulos es frecuentemente ilegible y dificulta la comprensión del texto en general. Mejorar los subtítulos es clave ya que el <strong>50% de la audiencia</strong> acostumbra navegar sin audio en espacios públicos.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-peach-200 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Impacto: Retención Visual</span>
+                            <span class="font-bold text-rose-700">Acción Inmediata</span>
+                        </div>
+                    </article>
+
+                    <!-- Pilar 3: Estrategia y Variedad de Contenido -->
+                    <article class="pillar-card cat-oportunidad bg-sand-50 rounded-[28px] p-6 sm:p-7 border border-sand-200 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center border border-amber-200">
+                                    <i data-lucide="clapperboard" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-amber-100 text-amber-900 border border-amber-200">
+                                    Oportunidad de Mejora
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                3. Estrategia y Variedad de Contenido
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Mix equilibrado de pilares (educativo, entretenimiento, prueba social y venta) utilizando formatos de mayor alcance como Reels y Carruseles.
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-sand-200/80 space-y-2">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-800">Evaluación:</p>
+                                <ul class="font-body text-xs text-charcoal-900 space-y-2 leading-relaxed">
+                                    <li>• <strong>Portadas:</strong> No se sabe de qué temas se habla al ver el feed; la portada de cada publicación es solamente la Dra., obligando a navegar el perfil para conocer la temática.</li>
+                                    <li>• <strong>Formatos:</strong> Predomina el <em>"¿Sabías que?"</em> en modo talking head, desaprovechando <strong>green screen y voz en off</strong>. No hay entretenimiento.</li>
+                                    <li>• <strong>Tono:</strong> Los guiones rígidos restan cercanía y frescura, traduciéndose en poca conversación y falta de comentarios.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-sand-200 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Formatos Clave</span>
+                            <span class="font-bold text-amber-800">Green Screen & Portadas</span>
+                        </div>
+                    </article>
+
+                    <!-- Pilar 4: Engagement y Retención -->
+                    <article class="pillar-card cat-oportunidad bg-sand-50 rounded-[28px] p-6 sm:p-7 border border-sand-200 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-orange-100 text-coral-600 flex items-center justify-center border border-orange-200">
+                                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-orange-100 text-coral-600 border border-orange-200">
+                                    Potencial de Crecimiento
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                4. Engagement y Retención (Comunidad)
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Nivel de interacción real en comentarios, calidad de las respuestas en DMs y consistencia en la publicación de Historias para mantener la audiencia tibia.
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-sand-200/80 space-y-2.5">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-coral-600">Evaluación:</p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed">
+                                    Cuando las publicaciones tienen inversión reaccionan bien, aunque la diferencia con los contenidos orgánicos es notoria.
+                                </p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed pt-2 border-t border-sand-100">
+                                    En general es una <strong>cuenta sana, con números correctos</strong>, aunque el esfuerzo de grabación, edición y publicación debería estar generando mucha más interacción, más guardados, más compartidos y un incremento constante de citas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-sand-200 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Base Actual: Saludable</span>
+                            <span class="font-bold text-coral-600">Escalar Alcance Orgánico</span>
+                        </div>
+                    </article>
+
+                    <!-- Pilar 5: Historias Destacadas -->
+                    <article class="pillar-card cat-fortaleza bg-emerald-50/60 rounded-[28px] p-6 sm:p-7 border border-emerald-200/80 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center border border-emerald-200">
+                                    <i data-lucide="bookmark-check" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-200">
+                                    Fortaleza
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                5. Historias Destacadas (Highlight Strategy)
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Organización tipo "página web" que resuelve las dudas frecuentes de un visitante nuevo (Servicios/Productos, Testimonios, Sobre mí/Nosotros, Preguntas Frecuentes).
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-emerald-200/70">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 mb-1.5">Evaluación:</p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed">
+                                    <strong>Bien utilizadas</strong>, responde a preguntas frecuentes de la audiencia. Solamente el destacado dedicado a <em>Profhilo</em> resulta confuso y aporta poco al usuario.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-emerald-200/70 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Ajuste Menor</span>
+                            <span class="font-bold text-emerald-800">Clarificar Profhilo</span>
+                        </div>
+                    </article>
+
+                    <!-- Pilar 6: Conversión y CTA -->
+                    <article class="pillar-card cat-fortaleza bg-emerald-50/60 rounded-[28px] p-6 sm:p-7 border border-emerald-200/80 bento-card flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-5">
+                                <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center border border-emerald-200">
+                                    <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+                                </div>
+                                <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-200">
+                                    Fortaleza
+                                </span>
+                            </div>
+
+                            <h3 class="text-lg font-extrabold text-charcoal-900 leading-snug mb-2">
+                                6. Conversión y CTA (Ruta del Cliente)
+                            </h3>
+                            <p class="font-body text-xs text-charcoal-800/65 leading-relaxed mb-4">
+                                <strong>Qué evalúa:</strong> Presencia de llamados a la acción claros en los pies de foto y Reels para mover el tráfico de las publicaciones hacia el link del perfil o los DMs.
+                            </p>
+
+                            <div class="bg-white rounded-2xl p-4 border border-emerald-200/70">
+                                <p class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 mb-1.5">Evaluación:</p>
+                                <p class="font-body text-xs sm:text-[13px] text-charcoal-900 leading-relaxed">
+                                    <strong>Su uso es correcto.</strong> Existe claridad en la invitación hacia el contacto directo para valoración y citas, manteniendo coherencia entre el mensaje del video y el destino del usuario.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-emerald-200/70 flex items-center justify-between text-xs">
+                            <span class="text-charcoal-800/60 font-semibold">Ruta de Citas</span>
+                            <span class="font-bold text-emerald-800">Bien Ejecutado</span>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- 4. Sección Diagnóstico General y 4 Áreas Clave a Mejorar (Bento Card Oscura de Alto Contraste) -->
+            <section id="plan-mejora" class="dark-gradient-bento text-white rounded-[28px] p-7 sm:p-11 shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-coral-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 space-y-8">
+                    <!-- Resumen Ejecutivo -->
+                    <div class="max-w-3xl">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-coral-400 text-xs font-bold uppercase tracking-wider mb-4 border border-white/10">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Diagnóstico General
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold leading-tight text-white mb-4">
+                            “Vemos una cuenta con grandes esfuerzos en guiones, temas variados, calidad de grabación y edición.”
+                        </h2>
+                        <p class="font-body text-white/75 text-sm sm:text-base leading-relaxed">
+                            La base técnica y el compromiso de producción ya existen. Para capitalizar todo ese esfuerzo y convertirlo en crecimiento orgánico y pacientes nuevos, definimos <strong class="text-white">4 áreas estratégicas clave a potenciar</strong>:
+                        </p>
+                    </div>
+
+                    <!-- Grid de las 4 Áreas Estratégicas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        
+                        <!-- Área 1 -->
+                        <div class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-3xl p-6 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-coral-500/30">01</span>
+                                <h3 class="font-bold text-lg text-white">Interacción con la Audiencia</h3>
+                            </div>
+                            <p class="font-body text-xs sm:text-sm text-white/75 leading-relaxed">
+                                Generar conversación real y participación activa en comentarios y mensajes, un factor fundamental que el algoritmo de Instagram prioriza para recomendar y hacer crecer una cuenta.
+                            </p>
+                        </div>
+
+                        <!-- Área 2 -->
+                        <div class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-3xl p-6 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-coral-500/30">02</span>
+                                <h3 class="font-bold text-lg text-white">Espontaneidad y Frescura</h3>
+                            </div>
+                            <p class="font-body text-xs sm:text-sm text-white/75 leading-relaxed">
+                                Evitar que los videos parezcan sobreproducidos en un momento digital donde la frescura, la naturalidad y la inmediatez conectan mucho más que los guiones rígidos.
+                            </p>
+                        </div>
+
+                        <!-- Área 3 -->
+                        <div class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-3xl p-6 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-coral-500/30">03</span>
+                                <h3 class="font-bold text-lg text-white">Relevancia y Diferenciación</h3>
+                            </div>
+                            <p class="font-body text-xs sm:text-sm text-white/75 leading-relaxed">
+                                Salir del contenido estandarizado del rubro médico-estético. La <strong>Dra. Pamela Rivera</strong> tiene una voz propia y un estilo propio que es necesario potenciar para diferenciarla claramente de la competencia.
+                            </p>
+                        </div>
+
+                        <!-- Área 4 -->
+                        <div class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-3xl p-6 transition-colors">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-coral-500 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-coral-500/30">04</span>
+                                <h3 class="font-bold text-lg text-white">Frecuencia Estratégica</h3>
+                            </div>
+                            <p class="font-body text-xs sm:text-sm text-white/75 leading-relaxed">
+                                Establecer una meta realista y sostenible a corto plazo de <strong class="text-coral-400">3 videos a la semana</strong> con el objetivo de que los contenidos sean sugeridos constantemente a una población más grande.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Propuesta de Valor & Cierre de Agencia Reinventa -->
+            <section id="contacto" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                
+                <!-- Mensaje Personalizado -->
+                <div class="lg:col-span-7 bg-peach-100 rounded-[28px] p-7 sm:p-10 border border-peach-200 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-coral-600 text-xs font-extrabold mb-4 shadow-2xs">
+                            <i data-lucide="handshake" class="w-3.5 h-3.5"></i> Siguiente Paso
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 leading-tight mb-4">
+                            Impulsemos juntos la marca personal de la Dra. Pamela Rivera
+                        </h2>
+                        <p class="font-body text-charcoal-900/85 text-sm sm:text-base leading-relaxed">
+                            Será un gusto ayudarles a accionar en este sentido. Contamos con <strong>paquetes modulares bien diseñados</strong> para que una marca personal como <strong>Dra. Pamela Rivera</strong> pueda dar el siguiente paso en su crecimiento digital sin que esto represente una carga para el negocio y en cambio, a corto plazo podamos provocar un crecimiento en comunidad, en clientes y en reconocimiento de marca.
+                        </p>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-peach-200 flex flex-wrap items-center gap-3 no-print">
+                        <button onclick="openModal()" class="px-6 py-3.5 rounded-2xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-sm transition-all flex items-center gap-2">
+                            <i data-lucide="layers" class="w-4 h-4 text-coral-400"></i>
+                            <span>Explorar Paquetes Modulares</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Contacto de Agencia Reinventa -->
+                <div class="lg:col-span-5 bg-sand-50 rounded-[28px] p-7 sm:p-10 border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-11 h-11 rounded-2xl bg-coral-500 text-white flex items-center justify-center font-extrabold text-xl shadow-md shadow-coral-500/20">
+                                R
+                            </div>
+                            <div>
+                                <h3 class="font-extrabold text-xl text-charcoal-900">Agencia Reinventa</h3>
+                                <p class="text-xs font-semibold text-charcoal-800/60">Estrategia Digital & Marca Personal</p>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-sand-200/80">
+                                <div class="w-9 h-9 rounded-xl bg-peach-100 text-coral-600 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="globe" class="w-4 h-4"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <p class="text-[10px] uppercase tracking-wider font-bold text-charcoal-800/50">Sitio Web</p>
+                                    <a href="https://agenciareinventa.online/" target="_blank" rel="noopener noreferrer" class="font-bold text-charcoal-900 hover:text-coral-500 truncate block">
+                                        agenciareinventa.online
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-sand-200/80">
+                                <div class="w-9 h-9 rounded-xl bg-peach-100 text-coral-600 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="phone" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] uppercase tracking-wider font-bold text-charcoal-800/50">Teléfono / WhatsApp</p>
+                                    <a href="https://wa.me/525631924145?text=Hola%20Agencia%20Reinventa,%20me%20gustar%C3%ADa%20agendar%20una%20asesor%C3%ADa%20para%20la%20marca%20de%20la%20Dra.%20Pamela%20Rivera." target="_blank" rel="noopener noreferrer" class="font-bold text-charcoal-900 hover:text-coral-500">
+                                        563 192 4145
+                                    </a>
+                                </div>
+                            </li>
+
+                            <li class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-sand-200/80">
+                                <div class="w-9 h-9 rounded-xl bg-peach-100 text-coral-600 flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] uppercase tracking-wider font-bold text-charcoal-800/50">Ubicación</p>
+                                    <p class="font-bold text-charcoal-900">Mazunte, Oax.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 mt-6 no-print">
+                        <a href="https://wa.me/525631924145?text=Hola%20Agencia%20Reinventa,%20revisamos%20la%20auditor%C3%ADa%20de%20la%20Dra.%20Pamela%20Rivera%20y%20queremos%20platicar%20sobre%20los%20paquetes%20modulares." target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 rounded-2xl bg-coral-500 hover:bg-coral-600 text-white font-extrabold text-sm shadow-lg shadow-coral-500/25 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            <span>Enviar WhatsApp Directo</span>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-sand-50 border-t border-sand-200 px-6 sm:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-charcoal-800/60">
+            <p>© 2026 <strong>Agencia Reinventa</strong> • Mazunte, Oaxaca. Todos los derechos reservados.</p>
+            <p>Diagnóstico confidencial preparado para <strong>Dra. Pamela Rivera (Medicina Estética)</strong></p>
+        </footer>
+
+    </div>
+
+    <!-- Modal Interactivo: Detalles de Contacto y Paquetes Modulares -->
+    <div id="asesoria-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-charcoal-900/60 backdrop-blur-sm no-print" onclick="handleBackdropClick(event)">
+        <div class="bg-white rounded-[28px] max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-sand-200 relative animate-fade-in">
+            <button onclick="closeModal()" aria-label="Cerrar modal" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-sand-50 hover:bg-sand-100 text-charcoal-800 flex items-center justify-center transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-peach-100 text-coral-600 text-xs font-extrabold mb-3">
+                <i data-lucide="layers" class="w-3.5 h-3.5"></i> Soluciones a la Medida
+            </div>
+            <h3 class="text-2xl font-extrabold text-charcoal-900 mb-2">Paquetes Modulares Reinventa</h3>
+            <p class="font-body text-xs sm:text-sm text-charcoal-800/75 mb-5">
+                Diseñados específicamente para marcas personales médicas: potenciamos su presencia sin quitarle tiempo de consulta.
+            </p>
+
+            <div class="space-y-3 mb-6">
+                <div class="p-4 rounded-2xl bg-sand-50 border border-sand-200">
+                    <div class="flex items-center justify-between mb-1">
+                        <h4 class="font-bold text-sm text-charcoal-900">Módulo 1: Identidad Visual & Bio-Funnel</h4>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-coral-500/15 text-coral-600">Base</span>
+                    </div>
+                    <p class="font-body text-xs text-charcoal-800/75">
+                        Paleta cromática, tipografía legible para subtítulos, plantillas de portadas temáticas, optimización SEO de biografías en IG/TikTok y ajuste de destacado Profhilo.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-sand-50 border border-sand-200">
+                    <div class="flex items-center justify-between mb-1">
+                        <h4 class="font-bold text-sm text-charcoal-900">Módulo 2: Producción Ágil & Guiones Frescos</h4>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-charcoal-900 text-white">3 Reels / Semana</span>
+                    </div>
+                    <p class="font-body text-xs text-charcoal-800/75">
+                        Estructura de guiones naturales (menos rigidez, más cercanía), integración de formatos <em>Green Screen</em> y voz en off, más dinámicas de interacción orgánica.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-sand-50 border border-sand-200">
+                    <div class="flex items-center justify-between mb-1">
+                        <h4 class="font-bold text-sm text-charcoal-900">Módulo 3: Aceleración de Citas en Oaxaca</h4>
+                        <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">Conversión</span>
+                    </div>
+                    <p class="font-body text-xs text-charcoal-800/75">
+                        Amplificación estratégica de los mejores contenidos orgánicos hacia pacientes potenciales en Oaxaca con alto interés en medicina estética.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="https://wa.me/525631924145?text=Hola%20Agencia%20Reinventa,%20me%20interesa%20conocer%20los%20paquetes%20modulares%20para%20la%20Dra.%20Pamela%20Rivera." target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-5 rounded-2xl bg-coral-500 hover:bg-coral-600 text-white font-bold text-xs sm:text-sm text-center shadow-lg shadow-coral-500/20 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Agendar por WhatsApp (563 192 4145)</span>
+                </a>
+                <a href="https://agenciareinventa.online/" target="_blank" rel="noopener noreferrer" class="py-3.5 px-5 rounded-2xl bg-sand-100 hover:bg-sand-200 text-charcoal-900 font-bold text-xs sm:text-sm text-center transition-colors">
+                    Sitio Web
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Interactividad -->
+    <script>
+        // Inicializar iconos Lucide
+        lucide.initIcons();
+
+        // Filtrado de pilares estratégicos
+        function filterPillars(category) {
+            const cards = document.querySelectorAll('.pillar-card');
+            const buttons = document.querySelectorAll('.pillar-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-charcoal-900', 'text-white', 'shadow-xs');
+                btn.classList.add('text-charcoal-800');
+            });
+
+            const activeBtn = document.getElementById(`filter-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-charcoal-900', 'text-white', 'shadow-xs');
+                activeBtn.classList.remove('text-charcoal-800');
+            }
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(`cat-${category}`)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Control del Modal
+        const modal = document.getElementById('asesoria-modal');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function handleBackdropClick(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
